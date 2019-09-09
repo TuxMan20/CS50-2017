@@ -1,0 +1,45 @@
+1.  What’s stdint.h
+A C library that defines a collection of Integers that have a definite "width". ie: uin8_t will always be 8 bytes.
+
+2.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+It is to ensure a predictable and controlable size of integers independently of processors and hardwares.
+
+3.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+BYTE: 1, DWORD: 4 BYTES, LONG: 4 BYTES, WORD: 2 BYTES
+
+4.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be?
+    Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+0x42 0x4D
+
+
+5.  What’s the difference between bfSize and biSize?
+bfSize is the total FILE SIZE given in bytes, and biSize is the size of the INFO HEADER in bytes. So biSize is always
+very small because it is part of the file size. Also, it should more or less stay the same across multiple files.
+
+6.  What does it mean if biHeight is negative?
+It means the file is a DIB(Device indepedant bitmap) that starts from the top to the bottom where the origin point is
+at the top left. A positive biHeight means the origin is at the BOTTOM left.
+
+
+7.  What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+it's in the biBitCount
+
+8.  Why might fopen return NULL in lines 24 and 32 of copy.c?
+If the file cannot be found
+
+9.  Why is the third argument to fread always 1 in our code?
+It tries to read ONE element of size RGBTRIPLE (the struct containing the informations for each RGB colors)
+
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+(4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4 = 3
+
+11. What does fseek do?
+changes the current file pointer while working with fopen. You declare the function while telling the program
+what file to use it in, of how much to offset the pointer and finally where is the origin.
+ex: fseek(myText, 4, SEEK_SET); <-- this will act upon the 4th character in myText begining from SEEK_SET(Begining of
+the text)
+
+12. What is SEEK_CUR?
+within the implementation of fseek(), this sets the start of fseek at the current file pointer used at the moment.
+
+
