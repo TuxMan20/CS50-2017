@@ -1,0 +1,23 @@
+What is pneumonoultramicroscopicsilicovolcanoconiosis?
+    occupational lung disease caused by inhalation of crystalline silica dust.
+
+According to its man page, what does getrusage do?
+    getrusage() returns information describing the resources utilized by the
+    current process, or all its terminated child processes.
+
+Per that same man page, how many members are in a variable of type struct rusage?
+    16
+
+Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+    For precision, not losing the data while another function is loaded.
+
+Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+    First, as long as the file pointer (fp) is not seeing an "end of file", it will check if the current character is indeed a letter or an apostrophe. If it's a number, or the apostrophe is not within a word
+    or the "word" is longer than the limit, it will be ignored and we move the file pointer to the next word.
+
+Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time?
+Put another way, what problems might arise by relying on fscanf alone?
+    the function has already ways to move along the stream, protections for errors and returns the char as a standard unsigned char.
+
+Why do you think we declared the parameters for check and load as const (which means "constant")?
+    That way we can change the pointer, but not the value we are pointing to (we couldn't have a bug that rewrites the entire text file)
