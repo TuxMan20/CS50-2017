@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h2>Welcome, {{ uname }}</h2>
+    <div>
+        <h3>Your current balance is {{ cash }} $USD</h3>
+    </div>
+    <div>
+    <table id="history" class="table">
+            <thead><tr>
+                <th>Stock Symbol</th>
+                <th>Value</th>
+                <th>Amount</th>
+                <th>Total Value</th>
+                <th>Date Purchased</th>
+            </tr></thead>
+            <tbody>
+        {% for items in history %}
+            <tr>
+                <td>{{ items['symbol'] }}</td>
+                <td>{{ items['value'] }}</td>
+                <td>{{ items['amount'] }}</td>
+                <td>{{ items['value'] * items['amount'] }}</td>
+                <td>{{ items['date'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div>
+        <h3>Your total holdings are summed up to {{ (totalStocks + cash)|round(2) }} $USD</h3>
+        {# https://stackoverflow.com/questions/17957511/jinja2-round-filter-not-rounding  #}
+    </div>
+
+
+
+
+{% endblock %}

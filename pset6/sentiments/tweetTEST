@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+import sys
+import os
+from helpers import get_user_timeline
+from analyzer import Analyzer
+from termcolor import colored
+
+def main():
+    ## Checks to make sure a twitter handle is given
+    if len(sys.argv) != 2 or sys.argv[1][0] != "@":
+        print("USAGE: Need a Twitter handle as argument. ie: @username")
+        exit(1)
+
+    ## Gets the list of tweets in a list
+    tweets = get_user_timeline(sys.argv[1], 200)
+
+
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # instantiate analyzer (imports the lists of words)
+    analyzer = Analyzer(positives, negatives)
+
+    # analyzes the list of tweets passed as a long String
+    score = analyzer.analyze(str(tweets))
+    if score > 0.0:
+        print(colored(":)", "green"))
+    elif score < 0.0:
+        print(colored(":(", "red"))
+    else:
+        print(colored(":|", "yellow"))
+
+
+if __name__ == "__main__":
+    main()

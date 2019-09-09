@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Sold
+{% endblock %}
+
+{% block main %}
+    <h2>Stock Sold</h2>
+    <div>
+        Congratulations! You just sold {{ amount }} stocks from {{ symbol }}.
+    </div>
+    <div>
+        {{ total }} $USD has been added to your account.
+    </div>
+    <div>
+        <h4>Thank you for your business!</h4>
+    </div>
+
+
+{% endblock %}

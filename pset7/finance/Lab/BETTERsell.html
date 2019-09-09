@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <h2>Stocks sales</h2>
+
+    <div>
+    <table id="history" class="table">
+            <thead><tr>
+                <th>Stock Symbol</th>
+                <th>Value</th>
+                <th>Amount</th>
+                <th>Total Value</th>
+                <th>Quantity</th>
+                <th>     </th>
+            </tr></thead>
+            <tbody>
+        {% for items in history %}
+            <tr>
+                <td>{{ items['symbol'] }}</td>
+                <td>{{ items['value'] }}</td>
+                <td>{{ items['amount'] }}</td>
+                <td>{{ items['value'] * items['amount'] }}</td>
+                 <form action="{{ url_for('sell') }}" method="post">
+                    <fieldset>
+                        <td class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="Amount" type="text"/>
+                        </td>
+                        <td class="form-group">
+                            <button class="btn btn-default" type="submit" name="{{ items['symbol'] }}">Sell</button>
+                        </td>
+                    </fieldset>
+                </form>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+
+
+{% endblock %}
