@@ -16,7 +16,7 @@
  */
 bool search(int value, int values[], int n)
 {
-    // TODO: implement a BINARY searching algorithm
+    // implements a BINARY search algorithm
     int begin = 0;
     int end = n-1;
     int mid;
